@@ -1,12 +1,27 @@
+/**
+* @file		task1_1.cpp
+* @brief	Program changes adjacent bits in inputed unsigned long number
+			and displays numbers in binary implementation
+*
+
+* Copyright 2014 by Yuliia Lyubchik
+*
+* This software is the confidential and proprietary information
+* of Yuliia Lyubchik. ("Confidential Information").  You
+* shall not disclose such Confidential Information and shall use
+* it only with permission from Yuliia.
+*/
+
+
 #include "stdafx.h"
 #include "task1_1.h"
 #include <stdio.h>
 #include <stdlib.h>
 
-const unsigned long PARITY_MASK = 0xAAAAAAAA;
-const unsigned long UNPARITY_MASK = 0x55555555; 
+const unsigned long PARITY_MASK = 0xAAAAAAAA; /* mask for getting only parity bits in number*/
+const unsigned long UNPARITY_MASK = 0x55555555; /* mask for getting only unparity bits in number*/
 
-const unsigned char ERROR = 0;
+const unsigned char ERROR = 0; 
 const unsigned char SUCCESS = 1;
 
 
@@ -33,9 +48,11 @@ int main()
 
 void Interface()
 {
+	printf("---------------------------------------------------------------------------\n");
 	printf("Hi! Welcome to your magic bits handler.\n");
 	printf("We will show what bits hides inside number and change for you adjacent bits. \n");
-	printf("Made by Yuliia Lyubchik ;)\n\n");
+	printf("Made by Yuliia Lyubchik ;)\n");
+	printf("---------------------------------------------------------------------------\n");
 }
 
 unsigned long Input()
@@ -52,22 +69,6 @@ unsigned long Input()
 	return n;
 }
 
-unsigned char Change_bits(unsigned long* n)
-{
-	if (n == NULL)
-	{
-		printf("Can't get data to change bits. \n");
-		return ERROR;
-	}
-	unsigned long parity, unparity;
-	parity = *n & PARITY_MASK;
-	parity = parity >> 1;
-	unparity = *n & UNPARITY_MASK;
-	unparity = unparity << 1;
-	*n = parity | unparity;
-	printf("\nBits changed!\n");
-	return SUCCESS;
-}
 
 void Binary_Display(unsigned long n)
 {
@@ -86,6 +87,7 @@ void Binary_Display(unsigned long n)
 	printf("\n");
 }
 
+
 unsigned char Type_checking(int retCode, int val)
 {
 	if (retCode == ERROR)
@@ -101,5 +103,26 @@ unsigned char Type_checking(int retCode, int val)
 	return SUCCESS;
 
 }
+
+
+unsigned char Change_bits(unsigned long* n)
+{
+	if (n == NULL)
+	{
+		printf("Can't get data to change bits. \n");
+		return ERROR;
+	}
+	unsigned long parity, unparity;
+	parity = *n & PARITY_MASK;
+	parity = parity >> 1;
+	unparity = *n & UNPARITY_MASK;
+	unparity = unparity << 1;
+	*n = parity | unparity;
+	printf("\nBits changed!\n");
+	return SUCCESS;
+}
+
+
+
 
 
